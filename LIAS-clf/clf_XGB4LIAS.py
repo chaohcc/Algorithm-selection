@@ -505,7 +505,7 @@ def constraint_compute_regret(objective,con_label,total_constraint,total_valdata
             not_find += 1
         total_regret += regret
 
-    # print('Lord, chao needs You! please come')
+
 
     return total_regret,not_find
 
@@ -595,7 +595,7 @@ def multi_constraint_compute_regret(objective,con_labels,total_constraint,total_
                 not_find += 1
             total_regret += regret
 
-    # print('Lord, chao needs You! please come')
+
 
     return total_regret,not_find
 
@@ -652,7 +652,7 @@ def accuracy(true_y, predict_y):
             cnt1 += 1
         else:
             cnt2 += 1
-    # print ('Lord, chao needs You, we have train the clf4LIAS')
+    # print ('Lord, I needs You, we train the clf4LIAS')
     all_accuracy = cnt1 / (cnt1 + cnt2)
     return all_accuracy
 
@@ -801,7 +801,7 @@ def XGB_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,sampling,val_
         x_train = x_train.drop(drop_w_fearture, axis=1)
         x_test = x_test.drop(drop_w_fearture, axis=1)
         x_valid = x_valid.drop(drop_w_fearture, axis=1)
-        print('Lord, chao needs You!')
+        print('Lord, I needs You!')
     elif feature_type == "naiveDH_naiveWorkload":
         drop_w_fearture = []
         for i in range(32):
@@ -858,7 +858,7 @@ def XGB_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,sampling,val_
     intersected_x = intersected_x[x_train.columns]
 
     data_num = len(x_train) + len(x_test) + len(x_valid)
-    # print ('Lord, chao needs You! we have loaded the clf data')
+    # print ('Lord, I needs You! we have loaded the clf data')
 
     class_file =  respath + 'class_xgboost4Clf_' + label + str(data_num) + '.json'
     class_json = json.dumps(class_name, ensure_ascii=False, default=default_dump)
@@ -1045,7 +1045,7 @@ def constraint_XGB_Clf(objective,con_label,allsampling,feature_type,reg_data_num
     intersected_x = intersected_x[x_train.columns]
 
     data_num = len(x_train) + len(x_test) + len(x_valid)
-    # print ('Lord, chao needs You! we have loaded the clf data')
+    # print ('Lord, I needs You! we have loaded the clf data')
 
     class_file =  respath + 'class_xgboost4Clf_' + objective + str(data_num) + '.json'
     class_json = json.dumps(class_name, ensure_ascii=False, default=default_dump)
@@ -1311,7 +1311,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     print (res_dict)
     write_res(res_file,res_dict,'header')
 
-    print ('Lord, chao needs You, from ever to ever!')
+    print ('Lord, I needs You, from ever to ever!')
     # 合并init_train，new_train
     merge_x_train = pd.concat([init_x_train,x_train,init_x_test,init_x_valid])
     merge_y_train = pd.concat([init_y_train,y_train,init_y_test,init_y_valid])
@@ -1492,7 +1492,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
     intersect_num = len(intersected_y)
 
     data_num = len(x_train) + len(x_test) + len(x_valid)
-    # print ('Lord, chao needs You! we have loaded the clf data')
+    # print ('Lord, I needs You! we have loaded the clf data')
 
     class_file =  respath + 'class_RandomForest4Clf_' + label + str(data_num) + '.json'
     class_json = json.dumps(class_name, ensure_ascii=False, default=default_dump)
@@ -1634,7 +1634,7 @@ def run_XGB_clf():
 
 
 def run_performance_constraint():
-    print('Lord, thank You, thank be with long and chao~ this is performance constraint')
+    print('Lord, thank You, thank be with me~ this is performance constraint')
     feature_type = "hybridencoder"
     sampling = 'systematic_10thousand'
     # sampling = 'uniform_10thousand'
@@ -1695,7 +1695,7 @@ def run_RandomForest_clf():
     allsampling = ''.join(samplinglist)
     embeding_file = '/home/xxx/index_selection/publish_data/total_feature_' + allsampling
 
-    # single objective 已测试通， 感谢天主
+    # single objective 
     reg_data_num = 28008
     v_data_num = 29851
     tasks = ['bulkloadtime','throughput','indexsize']
@@ -1709,14 +1709,14 @@ def run_RandomForest_clf():
 
 
 if __name__ == '__main__':
-    print ('Lord, chao needs You!')
-    for i in range(1):
-        run_XGB_clf()  # 感谢天主，测试通了 all data ,
 
-    # run_performance_constraint()   # 感谢天主，测试通了
+    for i in range(1):
+        run_XGB_clf()  # all data ,
+
+    # run_performance_constraint()   
 
     # for i in range(10):
-    #     run_RandomForest_clf()  # 感谢天主，已测试通
+    #     run_RandomForest_clf() 
 
 
 
