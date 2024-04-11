@@ -1,4 +1,4 @@
-## 2023/12/29
+## 
 # this code is writen as the random forest and XGBBoost
 # finall version
 
@@ -32,7 +32,7 @@ from LIB4regression import seed_everything
 from sklearn.feature_selection import SelectFromModel
 
 respath = './result/Regret_RandomForest_XGB/'
-val_datapath = '/home/wamdm/chaohong/index_selection/validation_data/'
+val_datapath = '/home/xxx/index_selection/validation_data/'
 
 
 
@@ -59,7 +59,7 @@ def single_return_index(pred,feature2index,label,index_candidates,index_header):
         # print('my Lord, the selected index is: ', index_name)
     # 如何验证 效果？
     elif label == 'bulkloadtime' or label == 'indexsize' : # 找最小的
-        # print('my Lord, Long and chao need You! this is ', label)
+        # print('my Lord, I need You! this is ', label)
         idx = np.argmin(pred)
         # tuple = candidates.loc[idx]
         tuple = index_candidates.loc[idx]
@@ -83,7 +83,7 @@ def single_return_index(pred,feature2index,label,index_candidates,index_header):
 
     return pred[idx],index_name
 
-original_val_datapath = '/home/wamdm/chaohong/index_selection/original_validation_data/'
+original_val_datapath = '/home/xxx/index_selection/original_validation_data/'
 def single_compute_regret(label,best_x, select_x,dataname,opsname, allsampling = 'systematic_sampling_10thousand'):
     not_find = 0
     val_name = dataname+'_'+opsname.split('_')[0]+allsampling
@@ -139,8 +139,7 @@ def index_single_compute_regret(label,select_x,dataname,opsname, allsampling = '
             # print (dataname, ',',opsname,',',select_x, ',',best_x,' ', rank)
             x_value = data[label].iloc[rank]
             regret = (1-(min(data[label].iloc[0],x_value)/max(data[label].iloc[0],x_value)))
-            if (regret> 1):
-                print('Lord, chao needs You!')
+
         else:
             regret = 0
             not_find = 1
@@ -181,7 +180,7 @@ def index_regret_single_objeectie_Selector(label,reg_mod,valdata,feature_header,
         thread_num = row['thread']
         is_rq = row['is_rq']
         # if thread_num > 1:
-        #     print('Lord, thank You, this is chao')
+        #     print('Lord, thank You')
         candidates,index_candidates,available_index = \
             get_clf_candidate(row, is_duplicate,insert_ratio,thread_num,is_delta,is_rq,index_library,row_header)
         # candidates 归一化
@@ -202,7 +201,7 @@ def index_regret_single_objeectie_Selector(label,reg_mod,valdata,feature_header,
         if (regret == 0 ):
             acc_cnt += 1
     all_accuracy = (acc_cnt-total_not_find) / (num-total_not_find)
-    print('Lord, chao need You! please come! ')
+    print('Lord, I need You! please come! ')
     return total_regret, total_not_find,all_accuracy,valdata
 
 
@@ -236,8 +235,7 @@ def adapt_index_regret_single_objeectie_Selector(label,reg_mod,valdata,feature_h
         insert_ratio = row['i']
         thread_num = row['thread']
         is_rq = row['is_rq']
-        # if thread_num > 1:
-        #     print('Lord, thank You, this is chao')
+
         candidates,index_candidates,available_index = \
             get_clf_candidate(row, is_duplicate,insert_ratio,thread_num,is_delta,is_rq,index_library,row_header)
         # candidates 归一化
@@ -258,7 +256,7 @@ def adapt_index_regret_single_objeectie_Selector(label,reg_mod,valdata,feature_h
         if (regret == 0 ):
             acc_cnt += 1
     all_accuracy = (acc_cnt-total_not_find) / (num-total_not_find)
-    print('Lord, chao need You! please come! ')
+    print('Lord, I need You! please come! ')
     return total_regret, total_not_find,all_accuracy,valdata
 
 
@@ -291,8 +289,7 @@ def regret_single_objeectie_Selector(label,reg_mod,valdata,feature_header,select
         insert_ratio = row['i']
         thread_num = row['thread']
         is_rq = row['is_rq']
-        # if thread_num > 1:
-        #     print('Lord, thank You, this is chao')
+
         candidates,index_candidates,available_index = \
             get_clf_candidate(row, is_duplicate,insert_ratio,thread_num,is_delta,is_rq,index_library)
         # candidates 归一化
@@ -311,7 +308,7 @@ def regret_single_objeectie_Selector(label,reg_mod,valdata,feature_header,select
         if (regret == 0 ):
             acc_cnt += 1
     all_accuracy = (acc_cnt-total_not_find) / (len(valdata)-total_not_find)
-    print('Lord, chao need You! please come! ')
+
     return total_regret, total_not_find,all_accuracy
 
 
@@ -410,7 +407,7 @@ def split_train_test(train_ddf,clfheader,label,self_seed = None,valid_size=0.1,
 
 
 
-clf_datapath = '/home/wamdm/chaohong/index_selection/classification_data/'
+clf_datapath = '/home/xxx/index_selection/classification_data/'
 # 应用hyperopt 进行调参
 def Hybrid_XGBRessor(label,embeding_file,ratio_file,sampling,allsampling,v_data_num,reg_data_num,
                      feature_type = 'hybridencoder',modeltype = 'singleXGB',
@@ -509,7 +506,7 @@ def Hybrid_XGBRessor(label,embeding_file,ratio_file,sampling,allsampling,v_data_
             x_train = x_train.drop(drop_x_fearture, axis=1)
             x_test = x_test.drop(drop_x_fearture, axis=1)
             x_valid = x_valid.drop(drop_x_fearture, axis=1)
-            print('Lord, chao needs You!')
+
         elif feature_type == "naiveDH_naiveWorkload":
             drop_w_fearture = []
             for i in range(32):
@@ -536,7 +533,7 @@ def Hybrid_XGBRessor(label,embeding_file,ratio_file,sampling,allsampling,v_data_
             x_valid = x_valid.drop(drop_DH_featurename, axis=1)
 
 
-            print('Lord, chao needs You!')
+
         else:
             print('feature_type: ' , feature_type)
 
@@ -781,7 +778,7 @@ def init_Hybrid_XGBRessor(label,embeding_file,ratio_file,sampling,allsampling,v_
 
 
     seed_everything(9958)
-    path = '/home/wamdm/chaohong/index_selection/total_init_adapt/'
+    path = '/home/xxx/index_selection/total_init_adapt/'
     datafile = path+'normal_systematic_10thousand_total_feature_'+str(init_num)+'_'+adapter
 
     x_train,y_train,x_test,y_test,x_valid,y_valid = new_init_dataset(label,datafile)
@@ -1116,7 +1113,7 @@ def True_value_Hybrid_XGBRessor(label,embeding_file,ratio_file,sampling,allsampl
             x_train = x_train.drop(drop_x_fearture, axis=1)
             x_test = x_test.drop(drop_x_fearture, axis=1)
             x_valid = x_valid.drop(drop_x_fearture, axis=1)
-            print('Lord, chao needs You!')
+
         else:
             print('feature_type: ' , feature_type)
 
@@ -1770,7 +1767,7 @@ def incremental_single_RF(label,modelpath,parapath,adapter,featuretype,sampling,
     init_model.fit(x_train,y_train)
     end = time.perf_counter()
     print('adpat model.estimators: ',init_model.n_estimators)
-    print ('Lord, chao needs You, from ever to ever!')
+
 
     adapttime = end-start
 
@@ -2016,7 +2013,7 @@ def incremental_single_xgb(label,modelpath,parapath,adapter,featuretype,sampling
         return
 
     seed_everything(9958)
-    path = '/home/wamdm/chaohong/index_selection/total_init_adapt/'
+    path = '/home/xxx/index_selection/total_init_adapt/'
     adaptdatafile = path+'normal_systematic_10thousand_total_feature_'+str(adapt_num)+'_'+adapter
 
     x_train,y_train,x_test,y_test,x_valid,y_valid = new_init_dataset(label,adaptdatafile)
@@ -2198,7 +2195,7 @@ def index_incremental_single_xgb(label,modelpath,parapath,adapter,featuretype,sa
         return
 
     seed_everything(9958)
-    path = '/home/wamdm/chaohong/index_selection/total_init_adapt/'
+    path = '/home/xxx/index_selection/total_init_adapt/'
     adaptdatafile = path+'normal_systematic_10thousand_total_feature_'+str(adapt_num)+'_'+adapter
 
     x_train,y_train,x_test,y_test,x_valid,y_valid = new_init_dataset(label,adaptdatafile)
@@ -2387,12 +2384,12 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
     samplinglist = list(sampling)
     samplinglist.insert(pos,'_sampling')
     allsampling = ''.join(samplinglist)
-    embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+    embeding_path = '/home/xxx/index_selection/embeding_'+sampling
     efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
 
     embeding_file = os.path.join(embeding_path,efile)
 
-    ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+    ratio_path = '/home/xxx/index_selection/ratio_data'
     ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
     labels = ['throughput']
     for label in labels:
@@ -2422,12 +2419,12 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
     # samplinglist = list(sampling)
     # samplinglist.insert(pos,'_sampling')
     # allsampling = ''.join(samplinglist)
-    # embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+    # embeding_path = '/home/xxx/index_selection/embeding_'+sampling
     # efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
     #
     # embeding_file = os.path.join(embeding_path,efile)
     #
-    # ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+    # ratio_path = '/home/xxx/index_selection/ratio_data'
     # ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
     # labels = ['throughput']
     # for label in labels:
@@ -2448,12 +2445,12 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
     # samplinglist = list(sampling)
     # samplinglist.insert(pos,'_sampling')
     # allsampling = ''.join(samplinglist)
-    # embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+    # embeding_path = '/home/xxx/index_selection/embeding_'+sampling
     # efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
     #
     # embeding_file = os.path.join(embeding_path,efile)
     #
-    # ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+    # ratio_path = '/home/xxx/index_selection/ratio_data'
     # ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
     # labels = ['throughput']
     # for label in labels:
@@ -2473,12 +2470,12 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
     # samplinglist = list(sampling)
     # samplinglist.insert(pos,'_sampling')
     # allsampling = ''.join(samplinglist)
-    # embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+    # embeding_path = '/home/xxx/index_selection/embeding_'+sampling
     # efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
     #
     # embeding_file = os.path.join(embeding_path,efile)
     #
-    # ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+    # ratio_path = '/home/xxx/index_selection/ratio_data'
     # ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
     # labels = ['throughput']
     # for label in labels:
@@ -2498,12 +2495,12 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
     # samplinglist = list(sampling)
     # samplinglist.insert(pos,'_sampling')
     # allsampling = ''.join(samplinglist)
-    # embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+    # embeding_path = '/home/xxx/index_selection/embeding_'+sampling
     # efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
     #
     # embeding_file = os.path.join(embeding_path,efile)
     #
-    # ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+    # ratio_path = '/home/xxx/index_selection/ratio_data'
     # ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
     # labels = ['throughput']
     # for label in labels:
@@ -2519,7 +2516,7 @@ def run_systamatic_sampling(feature_type,reg_data_num,v_data_num):
 
 
 def run_XGB(reg_data_num,v_data_num):
-    print ('Lord, thank You be with chao! chao needs You from ever to ever')
+
     print ('Lord, we are begin to run XGB')
 
     feature_type = "hybridencoder"
@@ -2527,7 +2524,7 @@ def run_XGB(reg_data_num,v_data_num):
     run_systamatic_sampling(feature_type,reg_data_num,v_data_num)
 
 def run_RF(reg_data_num,v_data_num):
-    print ('Lord, thank You be with chao! chao needs You from ever to ever')
+
     print ('Lord, we are begin to run RF')
 
 
@@ -2540,11 +2537,11 @@ def run_RF(reg_data_num,v_data_num):
         samplinglist = list(sampling)
         samplinglist.insert(pos,'_sampling')
         allsampling = ''.join(samplinglist)
-        embeding_path = '/home/wamdm/chaohong/index_selection/embeding_'+sampling
+        embeding_path = '/home/xxx/index_selection/embeding_'+sampling
         efile = 'has_ops_conv_'+allsampling+'_27795_embedings_'+str(reg_data_num)+'_all'
         embeding_file = os.path.join(embeding_path,efile)
 
-        ratio_path = '/home/wamdm/chaohong/index_selection/ratio_data'
+        ratio_path = '/home/xxx/index_selection/ratio_data'
         ratio_file = os.path.join(ratio_path,sampling+'_total_feature_'+str(reg_data_num)+'_all')
 
         labels = ['indexsize']
