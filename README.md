@@ -49,6 +49,20 @@ workload_feature_2: em0,em1,em2,em3,em4,em5,em6,em7,em8,em9,em10,em11,em12,em13,
 
 
 #### <center>Tabel 1:  dataset description</center>
+| dataset | description | duplicate | reference |
+| :---:     |     :---:      |       :---:  |       :---:  |
+books    | Amazon book sales popularity                                                                                    | No       | SOSD      |
+fb        | Upsampled Facebook user ID                                                                                                                                 | No        |   SOSD     |
+osm       | Uniformly sampled OpenStreetMap locations                                                                                                                  | No        |   SOSD    |
+wiki      | Wikipedia article edit timestamps                                                                                                                          | Yes       |    SOSD    |
+covid     | Uniformly sampled Tweet ID with tag COVID-19                                                                                                               | No        |    SNAM   |
+genome    | Loci pairs in human chromosomes                  | No        |    Cell    |
+stack     | Vote ID from Stackoverflow                                                                                                                                 | No       |     Stackoverflow   |
+wise      | Partition key from the WISE data                                                                                                                           | No       |     AJ   |
+libio     | Repository ID from libraries.io                                                                                                                            | No        |  Libraries.io.    |
+history   | History node ID in OpenStreetMap                                                                                                                           | No        |    OpenStreetMap    |
+planet    | Planet ID in OpenStreetMap                                                                                                                                 | No        |   OpenStreetMap    |
+lognormal | Values generated according to a lognormal distribution, multiply $10^9$ and rounded down to the nearest integer | Yes       |    ALEX    | 
 
 ![datasets_detail](https://github.com/chaohcc/LIAS/assets/51820918/160a6595-77da-4450-99ca-95e82b58f14e)
 
