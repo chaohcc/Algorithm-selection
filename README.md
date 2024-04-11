@@ -1,5 +1,5 @@
 # LIAS
-LIAS: Learned index algorithm selection
+LIAS: a Learned Approach to Index Algorithm Selection
 
 LIAS aims to slect an index algorithm for a specific dataset and workload. 
 
