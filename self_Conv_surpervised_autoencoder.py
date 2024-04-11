@@ -281,12 +281,12 @@ def load_ops_data(ops_list_path,dwfilepath, test = False):
 
     # Load LIAS dataset
     #只读取 有ops 文件，list 是total_feature_has_ops
-    # dwfilepath = '/data/cloudGroup/chaohong/dw_matrix_span_onehot/'
-    # dwfilepath = '/data/cloudGroup/chaohong/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/40thousand_stratified_dw_matrix_span_onehot/'   # 40thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/uniform_30thousand_dw_matrix_span_onehot/'   # uniform 20thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/systematic_1thousand_dw_matrix_span_onehot/'   # systematic 20thousand
+    # dwfilepath = '/data/xxx/dw_matrix_span_onehot/'
+    # dwfilepath = '/data/xxx/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
+    # dwfilepath = '/data/xxx/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
+    # dwfilepath = '/data/xxx/40thousand_stratified_dw_matrix_span_onehot/'   # 40thousand
+    # dwfilepath = '/data/xxx/uniform_30thousand_dw_matrix_span_onehot/'   # uniform 20thousand
+    # dwfilepath = '/data/xxx/systematic_1thousand_dw_matrix_span_onehot/'   # systematic 20thousand
 
     print(dwfilepath)
     indata = pd.read_csv(ops_list_path)
@@ -336,12 +336,12 @@ def embed_load_ops_data(ops_list_path,dwfilepath, test = False):
 
     # Load LIAS dataset
     #只读取 有ops 文件，list 是total_feature_has_ops
-    # dwfilepath = '/data/cloudGroup/chaohong/dw_matrix_span_onehot/'
-    # dwfilepath = '/data/cloudGroup/chaohong/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/40thousand_stratified_dw_matrix_span_onehot/'   # 40thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/uniform_30thousand_dw_matrix_span_onehot/'   # uniform 20thousand
-    # dwfilepath = '/data/cloudGroup/chaohong/systematic_1thousand_dw_matrix_span_onehot/'   # systematic 20thousand
+    # dwfilepath = '/data/xxx/dw_matrix_span_onehot/'
+    # dwfilepath = '/data/xxx/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
+    # dwfilepath = '/data/xxx/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
+    # dwfilepath = '/data/xxx/40thousand_stratified_dw_matrix_span_onehot/'   # 40thousand
+    # dwfilepath = '/data/xxx/uniform_30thousand_dw_matrix_span_onehot/'   # uniform 20thousand
+    # dwfilepath = '/data/xxx/systematic_1thousand_dw_matrix_span_onehot/'   # systematic 20thousand
 
     print(dwfilepath)
     indata = pd.read_csv(ops_list_path)
@@ -510,7 +510,7 @@ def train_model_4_embedding(ops_list_path,dwfilepath,num,bsize):
     total_embeding = pd.DataFrame(total_embeding,columns= embed_head)
     has_ops_list = pd.concat([has_ops_list,total_embeding],axis= 1)
 
-    embeding_file = '/data/cloudGroup/chaohong/run2_has_ops_conv_surpervised_embedings_'+str(len_test)+'_stratified_sampling'
+    embeding_file = '/data/xxx/run2_has_ops_conv_surpervised_embedings_'+str(len_test)+'_stratified_sampling'
     with open(embeding_file, 'w') as ef:
         efwriter = csv.writer(ef)
         efwriter.writerow(list(has_ops_list.columns))
@@ -583,9 +583,9 @@ def batch_load_model_4_embedding(para_path,model_len,ops_flags,dwfilepath,sampli
             emsl.append(ems)
         datam=pd.concat(emsl,axis=0)
         merge_embeding=pd.concat([has_ops_list,datam.reset_index(drop=True)],axis=1)
-        # embeding_file = '/data/cloudGroup/chaohong/has_ops_conv_stratified_sampling_10thousand_'+str(model_len)+'_embedings_'+str(len_test)
-        embeding_file = '/data/cloudGroup/chaohong/has_ops_conv'+sampling+str(model_len)+'_embedings_'+str(total_len)
-        # embeding_file = '/data/cloudGroup/chaohong/has_ops_conv_systematic_sampling_5thousand_'+str(model_len)+'_embedings_'+str(len_test)
+        # embeding_file = '/data/xxx/has_ops_conv_stratified_sampling_10thousand_'+str(model_len)+'_embedings_'+str(len_test)
+        embeding_file = '/data/xxx/has_ops_conv'+sampling+str(model_len)+'_embedings_'+str(total_len)
+        # embeding_file = '/data/xxx/has_ops_conv_systematic_sampling_5thousand_'+str(model_len)+'_embedings_'+str(len_test)
 
         if flag:
             embeding_file += flag
@@ -601,7 +601,7 @@ def batch_load_model_4_embedding(para_path,model_len,ops_flags,dwfilepath,sampli
 if __name__ == "__main__":
     print('Lord, You are my refuge!')
 
-    ops_list_path = '/data/cloudGroup/chaohong/total_feature/total_feature_20thousand_systematic_has_ops_12_27795'
+    ops_list_path = '/data/xxx/total_feature/total_feature_20thousand_systematic_has_ops_12_27795'
 
     bs = 96 # batch size used to train the model
 
