@@ -67,11 +67,17 @@ lognormal | Values generated according to a lognormal distribution, multiply $10
 
 ### other files
 #### slef_Conv_supervised_antoencoder.py
-       the python file for training the workload encoder model.
+the python file for training the workload encoder model.
 #### epoch64_bs_96_thansmodel_conv_supervised_27795_inputdim_32_systematic_sampling_10thousand_encoder.pth
-      the saved model of workload encoder, trained on training data with 277775 training points.
-      the workload file are sampling with systematic method, that sampling 10000 operations from each workload file
-      the batch size if 96, trian with 64 epoches.
+the saved model of workload encoder, trained on training data with 277775 training points.
+the workload file are sampling with systematic method, that sampling 10000 operations from each workload file
+the batch size if 96, trian with 64 epoches.
+#### LIAS-clf, LIAS-reg
+files for the classfication model and regression model
+#### DWMatrix
+some examples for the DWMatrix for the workload file
+#### training_data
+training data for the LIAS-clf and LIAS-reg
 
 ### References
 [GRE] Chaichon Wongkham, Baotong Lu, Chris Liu, Zhicong Zhong, Eric Lo, and Tianzheng Wang. Are Updatable Learned Indexes Ready? . PVLDB,15(11): 3004 - 3017, 2022.
