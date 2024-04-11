@@ -71,8 +71,8 @@ def generate_constraint(labels,c_num,c_seed = None):
 # group by 获得3个objective 的constraint
 def generate_groupby_constraint(labels,intersect_df,c_seed = None):
     # 读入total_feature_28008,在每一个指标上，根据范围，随机选一个, group by according to dataname and opsname
-    # train_data = '/home/wamdm/chaohong/index_selection/new_test_adaptation/total_feature_all_29851'
-    train_data = '/data/cloudGroup/chaohong/index_selection/new_test_adaptation/total_feature_all_29851'
+    # train_data = '/home/xxx/index_selection/new_test_adaptation/total_feature_all_29851'
+    train_data = '/data/xxx/index_selection/new_test_adaptation/total_feature_all_29851'
     reg_data = pd.read_csv(train_data)
     groupdata = reg_data.groupby(['dataname','opsname'])
 
@@ -367,11 +367,11 @@ def adapt_split_train_test(train_ddf,clfheader,label,init_class_name,self_seed =
 
 
 # 117 path
-clf_datapath = '/data/cloudGroup/chaohong/index_selection/classification_data/'
-weight_clf_datapath = '/data/cloudGroup/chaohong/index_selection/weighted_clf_data/'
-val_datapath = '/data/cloudGroup/chaohong/index_selection/validation_data/'
-original_val_datapath = '/data/cloudGroup/chaohong/index_selection/original_validation_data/'
-reg_datapath = '/data/cloudGroup/chaohong/index_selection/data_ops_index_label/total_feature'
+clf_datapath = '/data/xxx/index_selection/classification_data/'
+weight_clf_datapath = '/data/xxx/index_selection/weighted_clf_data/'
+val_datapath = '/data/xxx/index_selection/validation_data/'
+original_val_datapath = '/data/xxx/index_selection/original_validation_data/'
+reg_datapath = '/data/xxx/index_selection/data_ops_index_label/total_feature'
 
 respath = './result/Alternatives_Clf/'
 
@@ -410,14 +410,14 @@ def compute_single_regret(label,total_valdata, val_preds, valdata_y, allsampling
                 predict_x = val_preds[i]
                 regret = judge_available (dataname,predict_x,label) # 判断index 是否可用
                 if regret == 0:
-                    # print ('Lord, chao needs You!')
+                    # print ('Lord, I needs You!')
                     not_find += 1
                 # print (dataname,',',opsname,',',val_preds[i])
                 # print(val_preds[i])
             # pred 在第几位
         total_regret += regret
 
-    # print('Lord, chao needs You! please come')
+    
 
     return total_regret,not_find
 
@@ -1617,7 +1617,7 @@ def run_XGB_clf():
     samplinglist = list(sampling)
     samplinglist.insert(pos, '_sampling')
     allsampling = ''.join(samplinglist)
-    embeding_file = '/home/wamdm/chaohong/index_selection/publish_data/total_feature_' + allsampling
+    embeding_file = '/home/xxx/index_selection/publish_data/total_feature_' + allsampling
 
     # single objective 已测试通， 感谢天主
     reg_data_num = 28008
@@ -1693,7 +1693,7 @@ def run_RandomForest_clf():
     samplinglist = list(sampling)
     samplinglist.insert(pos, '_sampling')
     allsampling = ''.join(samplinglist)
-    embeding_file = '/home/wamdm/chaohong/index_selection/publish_data/total_feature_' + allsampling
+    embeding_file = '/home/xxx/index_selection/publish_data/total_feature_' + allsampling
 
     # single objective 已测试通， 感谢天主
     reg_data_num = 28008
