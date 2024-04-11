@@ -42,7 +42,7 @@ def generate_three_weights():
 # 获得3个objective 的constraint
 def generate_constraint(labels,c_num,c_seed = None):
     # 读入total_feature_28008,在每一个指标上，根据范围，随机选一个
-    train_data = '/data/cloudGroup/chaohong/index_selection/new_test_adaptation/total_feature_all_29851'
+    train_data = '/data/cloudGroup/xxxx/index_selection/new_test_adaptation/total_feature_all_29851'
     reg_data = pd.read_csv(train_data)
     total_constraints = []
     total_metric_min = []
