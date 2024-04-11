@@ -5,12 +5,11 @@ LIAS aims to slect an index algorithm for a specific dataset and workload.
 
 ---
 
-### performance metrics
+### performance measures
 
-Considered perfomrance metrics in LIAS:  bulkloadtime,indexsize,throughput. The correaltions among the three metrics
+Considered perfomrance mesuress in LIAS:  bulkloadtime,indexsize,throughput. The correaltions among the three metrics
 
 ![task_corr](https://github.com/chaohcc/LIAS/assets/51820918/cc02b9b1-f063-47cb-a0db-ef03c8f0240b)
-
 
 ---
 
@@ -67,6 +66,9 @@ lognormal | Values generated according to a lognormal distribution, multiply $10
 ![datasets_detail](https://github.com/chaohcc/LIAS/assets/51820918/160a6595-77da-4450-99ca-95e82b58f14e)
 
 ---
+
+### other files
+
 
 ### References
 [GRE] Chaichon Wongkham, Baotong Lu, Chris Liu, Zhicong Zhong, Eric Lo, and Tianzheng Wang. Are Updatable Learned Indexes Ready? . PVLDB,15(11): 3004 - 3017, 2022.
