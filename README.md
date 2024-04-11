@@ -63,12 +63,15 @@ history   | History node ID in OpenStreetMap                                    
 planet    | Planet ID in OpenStreetMap                                                                                                                                 | No        |   OpenStreetMap    |
 lognormal | Values generated according to a lognormal distribution, multiply $10^9$ and rounded down to the nearest integer | Yes       |    ALEX    | 
 
-![datasets_detail](https://github.com/chaohcc/LIAS/assets/51820918/160a6595-77da-4450-99ca-95e82b58f14e)
-
 ---
 
 ### other files
-
+#### slef_Conv_supervised_antoencoder.py
+       the python file for training the workload encoder model.
+#### epoch64_bs_96_thansmodel_conv_supervised_27795_inputdim_32_systematic_sampling_10thousand_encoder.pth
+      the saved model of workload encoder, trained on training data with 277775 training points.
+      the workload file are sampling with systematic method, that sampling 10000 operations from each workload file
+      the batch size if 96, trian with 64 epoches.
 
 ### References
 [GRE] Chaichon Wongkham, Baotong Lu, Chris Liu, Zhicong Zhong, Eric Lo, and Tianzheng Wang. Are Updatable Learned Indexes Ready? . PVLDB,15(11): 3004 - 3017, 2022.
