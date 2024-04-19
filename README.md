@@ -77,7 +77,7 @@ files for the classfication model and regression model
 #### DWMatrix
 some examples for the DWMatrix for the workload file
 #### training_data
-training data for the LINDAS-clf and LINDAS-reg
+contains training data for the LINDAS-clf and LINDAS-reg
 
 ### References
 [GRE] Chaichon Wongkham, Baotong Lu, Chris Liu, Zhicong Zhong, Eric Lo, and Tianzheng Wang. Are Updatable Learned Indexes Ready? . PVLDB,15(11): 3004 - 3017, 2022.
