@@ -1,4 +1,4 @@
-this file is for LIAS with regression model
+this file is for LINDAS with regression model
 input the features of dataset, workload, and the index algorithm candidates
 predict the performance for each index algorithm
 refine with the single objective (measure), weighted objectives, and constraint objectives
