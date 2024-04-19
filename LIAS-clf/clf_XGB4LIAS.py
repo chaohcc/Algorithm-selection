@@ -1,7 +1,7 @@
 # this code is for the model alternatives with classification task
     # random forest, xgboost, deep learning model: MLP
 # each task train a model. the output of model can not be weighted
-# 如果进行比较，只能比较 single task 的预测结果
+
 
 # classification task:
 # input: data, workload
@@ -24,12 +24,12 @@ from util import run_clf_RF_hypertuning,generate_val_clf_header
 
 
 def generate_three_weights():
-    # 生成两个随机数，并排序
+    # generate two random value，sort
     num1 = random.random()
     num2 = random.random()
     num1, num2 = sorted([num1, num2])
 
-    # 计算三个随机数
+    # produce three weights, and shuffle
     a = num1
     b = num2 - num1
     c = 1 - num2
@@ -39,9 +39,9 @@ def generate_three_weights():
     return weights
 
 
-# 获得3个objective 的constraint
+# generate constraint for objective
 def generate_constraint(labels,c_num,c_seed = None):
-    # 读入total_feature_28008,在每一个指标上，根据范围，随机选一个
+    # 
     train_data = '/data/cloudGroup/xxxx/index_selection/new_test_adaptation/total_feature_all_29851'
     reg_data = pd.read_csv(train_data)
     total_constraints = []
@@ -452,9 +452,9 @@ def constraint_compute_regret(objective,con_label,total_constraint,total_valdata
                 continue
         indexdata = data['indexname'].tolist()
         if select_x in indexdata:
-            regret = judge_available(dataname,select_x,objective) # 判断index 是否可用
+            regret = judge_available(dataname,select_x,objective) # judge index whether applicable
             if regret == 0:
-                # 判断select_x 是否满足 constraint
+                # judge the select_x whether satisgy constraint
                 select_performance = data.loc[data['indexname'] == select_x]
                 if con_label == 'throughput':
                     a = select_performance[con_label].values[0]
@@ -524,7 +524,7 @@ def multi_constraint_compute_regret(objective,con_labels,total_constraint,total_
         for con_label in con_labels:
             constraint = total_constraint[i][con_label]
             select_x = val_preds[i]
-            # 判断是否有索引能够满足constraint
+            # judge any index can satisgy constraint
 
             if con_label == 'throughput':
                 max_con = data[con_label].max()
@@ -542,15 +542,15 @@ def multi_constraint_compute_regret(objective,con_labels,total_constraint,total_
                     continue
             indexdata = data['indexname'].tolist()
             if select_x in indexdata:
-                regret = judge_available(dataname,select_x,objective) # 判断index 是否可用
+                regret = judge_available(dataname,select_x,objective) 
                 if regret == 0:
-                    # 判断select_x 是否满足 constraint
+                    # whether select_x satisfy constraint
                     select_performance = data.loc[data['indexname'] == select_x]
                     if con_label == 'throughput':
                         a = select_performance[con_label].values[0]
                         if a < constraint:
                             regret = 1
-                        else:# 计算 regret
+                        else:# compute regret
                             con_data = data[data[con_label] >= constraint]
                             if objective == 'throughput':
                                 sortvalue = con_data.sort_values(by=objective,inplace=False,ascending=False)
@@ -572,7 +572,7 @@ def multi_constraint_compute_regret(objective,con_labels,total_constraint,total_
                         a = select_performance[con_label].values[0]
                         if a > constraint:
                             regret = 1
-                        else:# 计算 regret
+                        else:# compute regret
                             con_data = data[data[con_label] <= constraint]
                             if objective == 'throughput':
                                 sortvalue = con_data.sort_values(by=objective,inplace=False,ascending=False)
@@ -610,13 +610,13 @@ def judge_available(data_name, select_x,label = 'indexsize'):
         is_delta = True
     else:
         is_delta = False
-    if is_duplicate:# 说明数据存在重复，要去掉不适用的index
+    if is_duplicate:# if duplicate data
         not_applicable = ['FAST','LIPP','FINEdex','ART','Wormhole','XIndex','HOT']
     else:
         not_applicable = []
 
     # workload = [ops_num,rq_ratio,nl_ratio,insert_ratio,insert_type,hotratio,mix,zipfratio,thread_num]
-    # 判断是否有插入, workload []
+    # if insert? workload []
     if workload_feature[3] > 0:
         # print('the workload contain insert ~ ~ i need You, my Lord' )
         non_insert = ['RMI','PGM','FAST','TS']
@@ -624,7 +624,7 @@ def judge_available(data_name, select_x,label = 'indexsize'):
     else:
         insert = ['DynamicPGM']
         not_applicable += insert
-    # 判断是否多线程
+    # if multi-thread
     if workload_feature[8] > 1:
         # print('the workload is multi-thread ~ ~ please come, my Lord')
         single_thread = ['RMI','ALEX','BTree','MABTree','FAST','PGM','LIPP','DynamicPGM','ART','DILI','TS','HOT']
@@ -848,7 +848,7 @@ def XGB_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,sampling,val_
     for key,x in class_name.items():
         intersected_df.loc[intersected_df['indexname'] == key, 'indexname'] = x
 
-    # 如果出现不在tarin data 中的class name
+   
 
     intersected_df[['indexname']] = intersected_df[['indexname']].astype('int')
     intersected_y_class_num = intersected_df['indexname']
@@ -940,7 +940,7 @@ def XGB_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,sampling,val_
         traintime = end-start
         joblib.dump(clf_mod,modelpath)
 
-    # 求regret
+    # compute regret
     start1 = time.perf_counter_ns()
     intersected_y_preds = clf_mod.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -989,14 +989,14 @@ def constraint_XGB_Clf(objective,con_label,allsampling,feature_type,reg_data_num
     print('Lord, please be with us, today is Jan 4')
     print('Lord, this is XGB for classification task for: ', objective, ' with constraint: ', con_label)
     labels = ['bulkloadtime','throughput','indexsize']
-    # 划分训练集和测试集
-    # load clf data
+    # split train and test
+                # load clf data
 
     clf_file = os.path.join(clf_datapath, objective+'_'+allsampling+str(reg_data_num))
     clfdata = pd.read_csv(clf_file)
     clfheader = generate_clf_header(objective)
 
-    # 加入特征 is_i, is_rq, lookup
+
     clfdata = add_new_feature_rq_i(clfdata)
 
     train_unique_class = [1,0]
@@ -1025,7 +1025,7 @@ def constraint_XGB_Clf(objective,con_label,allsampling,feature_type,reg_data_num
     x_valid = x_valid.drop(['dataname','opsname'], axis=1)
 
 
-    # 验证 regret
+    #  regret
     val_file = os.path.join(val_datapath,objective + '_' + val_data +'_file'+str(v_data_num))
     total_valdata = pd.read_csv(val_file)
     valclfheader = generate_val_clf_header(objective)
@@ -1124,7 +1124,7 @@ def constraint_XGB_Clf(objective,con_label,allsampling,feature_type,reg_data_num
         traintime = end-start
         joblib.dump(clf_mod,modelpath)
 
-    # 求regret
+    # regret
     start1 = time.perf_counter_ns()
     intersected_y_preds = clf_mod.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -1171,7 +1171,7 @@ def constraint_XGB_Clf(objective,con_label,allsampling,feature_type,reg_data_num
 
 
 
-# 更新已经训练好的XGB-clf：data adaptation, workload adaptation, index adaption
+# update XGB-clf：data adaptation, workload adaptation, index adaption
 def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_type,init_data_num,adapt_data_num,v_data_num,sampling,
                         val_data = 'finish',modeltype= 'clfXGB'):
     print('Lord, thank You! we test the adaptation of XGB-Clf')
@@ -1189,7 +1189,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     initclf_file = os.path.join(clf_datapath, label+'_'+allsampling+str(init_data_num)+'_'+adapt_v)
     initclfdata = pd.read_csv(initclf_file)
     initclfheader = generate_clf_header(label)
-    # 加入特征 is_i, is_rq, lookup
+    # add is_i, is_rq, lookup
     initclfdata = add_new_feature_rq_i(initclfdata)
     init_x_train,init_y_train,init_x_test,init_y_test,init_x_valid,init_y_valid, \
     init_num_class,init_class_name = init_split_train_test(initclfdata,initclfheader,label)
@@ -1277,7 +1277,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     incremental_x_num = len(x_train) + len(x_test) + len(x_valid)
     res_file = respath+'clf_result_xgboost_adapter'
 
-    # new data 在init model 上的性能
+    # new data in init model 
     start1 = time.perf_counter_ns()
     intersected_y_preds = init_model.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -1297,7 +1297,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     intersected_y_preds = pd.Series(intersected_y_preds['indexname'].values)
     vald_reference_time = end1 - start1
 
-    # 模型对验证集预测结果评分
+    # validate 
     valdata_accuracy = accuracy(intersected_y,intersected_y_preds)
 
     clf_regret,not_find  = compute_single_regret(label,intersected_data_ops,intersected_y_preds,intersected_y)
@@ -1342,7 +1342,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     end = time.perf_counter()
     adapttime = end-start
 
-    # 测试new data 在 adapt model 上的性能
+    # new data in adapt model 
     start1 = time.perf_counter_ns()
     intersected_y_preds = adapt_model.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -1361,7 +1361,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     intersected_y_preds = pd.Series(intersected_y_preds['indexname'].values)
     vald_reference_time = end1 - start1
 
-    # 模型对验证集预测结果评分
+    # vallidate
     valdata_accuracy = accuracy(intersected_y,intersected_y_preds)
 
     clf_regret,not_find  = compute_single_regret(label,intersected_data_ops,intersected_y_preds,intersected_y)
@@ -1393,7 +1393,7 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     end = time.perf_counter()
     retraintime = end-start
 
-    # 测试new data 在 new model 上的性能
+    # new data in new model 
     start1 = time.perf_counter_ns()
     intersected_y_preds = retrain_model.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -1412,11 +1412,11 @@ def incremental_XGB_Clf(label,modelpath,parapath,adapt_v,allsampling,feature_typ
     intersected_y_preds = pd.Series(intersected_y_preds['indexname'].values)
     vald_reference_time = end1 - start1
 
-    # 模型对验证集预测结果评分
+
     valdata_accuracy = accuracy(intersected_y,intersected_y_preds)
 
     clf_regret,not_find  = compute_single_regret(label,intersected_data_ops,intersected_y_preds,intersected_y)
-    avg_regret = clf_regret/(intersect_num-not_find)   # 如果为0 怎么办？
+    avg_regret = clf_regret/(intersect_num-not_find)   
 
     res_dict = res_dict_write(label,val_data,'retrain_'+modeltype,feature_type,sampling,feature_num,retraintime,retrain_model,
                               adapt_v,init_x_num,incremental_x_num,valdata_accuracy,vald_reference_time,
@@ -1435,7 +1435,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
     print('Lord, please be with us, today is Jan 17')
     print('Lord, this is Rnadom Forest for classification task: ', label)
 
-    # 划分训练集和测试集
+    # split train and test
     # load clf data
     if adapt_v:
         clf_file = os.path.join(clf_datapath, label+'_'+allsampling+str(reg_data_num)+'_init_'+adapt_v)
@@ -1445,7 +1445,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
         clf_file = os.path.join(clf_datapath, label+'_'+allsampling+str(reg_data_num))
         clfdata = pd.read_csv(clf_file)
         clfheader = generate_clf_header(label)
-    # 加入特征 is_i, is_rq, lookup
+    # and  is_i, is_rq, lookup
     clfdata = add_new_feature_rq_i(clfdata)
 
     train_unique_class = [1,2]
@@ -1472,7 +1472,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
     x_test = x_test.drop(['dataname','opsname'], axis=1)
     x_valid = x_valid.drop(['dataname','opsname'], axis=1)
 
-    # 验证 regret
+
     val_file = os.path.join(val_datapath,label + '_' + val_data +'_file'+str(v_data_num))
     total_valdata = pd.read_csv(val_file)
     valclfheader = generate_val_clf_header(label)
@@ -1565,7 +1565,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
         joblib.dump(clf_mod,modelpath)
 
 
-    # 求regret
+    # regret
     start1 = time.perf_counter_ns()
     intersected_y_preds = clf_mod.predict(intersected_x)
     end1 = time.perf_counter_ns()
@@ -1583,7 +1583,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
     intersected_y_preds = pd.Series(intersected_y_preds['indexname'].values)
     inter_reference_time = end1 - start1
 
-    # 模型对验证集预测结果评分
+
     valdata_accuracy = accuracy(intersected_y,intersected_y_preds)
 
 
@@ -1606,7 +1606,7 @@ def RandomForest_Clf(label,allsampling,feature_type,reg_data_num,v_data_num,samp
     write_res(res_file,res_dict,'header')
 
     return modelpath,para_file,data_num
-# 感谢天主，已测试通
+# tanks Lord, success
 def run_XGB_clf():
     feature_type = "hybridencoder"
 
