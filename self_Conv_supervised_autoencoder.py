@@ -13,7 +13,7 @@ from torch.autograd import Variable
 import random
 
 
-# 用dwmatrix 作为label，train model in a self-supervised manner
+# use dwmatrix as label，train workload encoding model in a self-supervised manner
 
 # Setting random seed to facilitate reproduction
 seed = 9958
@@ -184,8 +184,8 @@ class self_attn_encoder_model(nn.Module):
         self.linear1 = nn.Linear(ini_feats, encode_feats, bias = True)
 
     def forward(self, batch_samples):
-        # 开始时用 maxpooling in CNN
-        # 开始时不用relu 和 linear
+        #  maxpooling and CNN
+        # do not use relu and linear
         batch_samples = batch_samples.unsqueeze(1)  #1*20000*32
         batch_samples = self.conv2d1(batch_samples)  # 256*9999*32
         batch_samples,indices = self.maxpool(batch_samples)
@@ -220,9 +220,8 @@ class self_attn_decoder_model(nn.Module):
         self.unmaxpool = nn.MaxUnpool2d((2,1),(2,1))
 
     def forward(self, attn_output,out_feats,indices):
-        # 开始时用 maxpooling in CNN
-        # 开始时不用relu 和 linear
-        # beginning dimension 1*32
+
+
 
         # back_output = self.decode_pma2(self.S.repeat(attn_output.size(0),1000,1), attn_output)   #1000*32
         attn_output = self.decode_pma2(self.S.repeat(attn_output.size(0),out_feats,1), attn_output)   #1000*32
@@ -250,7 +249,7 @@ class self_attn_model(nn.Module):
         self.attn_decoder = attn_decoder
 
     def forward(self, batch_samples):
-        # 开始时用 maxpooling in CNN
+        # start with maxpooling in CNN
 
         attn_output,convsize,indices = self.attn_encoder(batch_samples)
         back_output = self.attn_decoder(attn_output,convsize,indices)
@@ -280,7 +279,7 @@ def retrun_embeding(model,data,device,bs):
 def load_ops_data(ops_list_path,dwfilepath, test = False):
 
     # Load LIAS dataset
-    #只读取 有ops 文件，list 是total_feature_has_ops
+    # read ops file，list is total_feature_has_ops
     # dwfilepath = '/data/xxx/dw_matrix_span_onehot/'
     # dwfilepath = '/data/xxx/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
     # dwfilepath = '/data/xxx/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
@@ -295,10 +294,9 @@ def load_ops_data(ops_list_path,dwfilepath, test = False):
 
     data=[]
     cut_i = 0
-    # 根据data name 和ops name，构建DW_matrix
-    # 如果已经有DW_matrix 则直接读入: DW_matrix 的名称为dataname+_ops_name(prefix)
-    # 根据data name 读取pgm feature, 根据ops name 读取operations file
-    # 2 代表insert, 1 代表range query, 0 代表 point query
+    # according to data name and ops name，generate DW_matrix
+
+    # 2 represent insert, 1 represent range query, 0 for point query
     ci = 0
     lastfile = None
     for dataname,opsname in has_ops_list.values:
@@ -334,8 +332,8 @@ def load_ops_data(ops_list_path,dwfilepath, test = False):
 
 def embed_load_ops_data(ops_list_path,dwfilepath, test = False):
 
-    # Load LIAS dataset
-    #只读取 有ops 文件，list 是total_feature_has_ops
+    # Load LINDAS dataset
+
     # dwfilepath = '/data/xxx/dw_matrix_span_onehot/'
     # dwfilepath = '/data/xxx/30thousand_stratified_dw_matrix_span_onehot/'  # 20thousand
     # dwfilepath = '/data/xxx/10thousand_stratified_dw_matrix_span_onehot/'   # 10thousand
@@ -352,10 +350,7 @@ def embed_load_ops_data(ops_list_path,dwfilepath, test = False):
 
     data=[]
     cut_i = 0
-    # 根据data name 和ops name，构建DW_matrix
-    # 如果已经有DW_matrix 则直接读入: DW_matrix 的名称为dataname+_ops_name(prefix)
-    # 根据data name 读取pgm feature, 根据ops name 读取operations file
-    # 2 代表insert, 1 代表range query, 0 代表 point query
+
     ci = 0
     lastfile = None
     for dataname,opsname in unique_data_ops.values:
@@ -484,11 +479,11 @@ def train_model_4_embedding(ops_list_path,dwfilepath,num,bsize):
     del trainloader
     print ('Lord, thank You, the model train over~')
 
-    # 只保存模型参数
+    # save the model parameters
     # para_path = './transmodel_para_conv_surpervised_'+ str(len_test)+'_inputdim_'+str(32) +'_stratified_sampling'+'.pth'
     # torch.save(model.state_dict(),para_path)
     # print ('Lord, thank You, we have saved the model to ', para_path)
-    # 加载最优模型参数
+    # load the model parameters with lowest loss
     print(para_path)
     model.load_state_dict(torch.load(para_path))
     data, has_ops_list, len_test = load_ops_data(ops_list_path,dwfilepath,True)
@@ -503,7 +498,7 @@ def train_model_4_embedding(ops_list_path,dwfilepath,num,bsize):
         embedings = retrun_embeding(model,batch_data,device,bs)
         total_embeding.extend(embedings)
         print ('Jesus, please has pity on chao! thank You~')
-    # 把embedings 保存下来
+    # save embedings 
     embed_head = []
     for i in range(32):
         embed_head.append('em'+str(i))
@@ -543,7 +538,7 @@ def batch_load_model_4_embedding(para_path,model_len,ops_flags,dwfilepath,sampli
 
     load_model = self_attn_model(attn_encoder, attn_decoder)
 
-    # 加载模型
+    # load model
     device_ids = [1,0,2]
     load_model = nn.DataParallel(load_model, device_ids=device_ids)
     load_model.load_state_dict(torch.load(para_path))
@@ -569,7 +564,7 @@ def batch_load_model_4_embedding(para_path,model_len,ops_flags,dwfilepath,sampli
             total_embeding.extend(embedings)
             print ('Jesus, please has pity on chao! thank You~')
 
-        # 把embedings 保存下来
+        # save embedings
         embed_head = []
         for i in range(32):
             embed_head.append('em'+str(i))
