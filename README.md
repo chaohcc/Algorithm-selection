@@ -1,13 +1,13 @@
-# LIAS
-LIAS: a Learned Approach to Index Algorithm Selection
+# LINDAS
+LINDAS: a Learned Approach to Index Algorithm Selection
 
-LIAS aims to slect an index algorithm for a specific dataset and workload. 
+LINDAS aims to select an index algorithm for a specific dataset and workload. 
 
 ---
 
 ### performance measures
 
-Considered perfomrance mesuress in LIAS:  bulkloadtime,indexsize,throughput. The correaltions among the three metrics
+Considered performance measures in LINDAS: bulk load time, index size, throughput. The correlations among the three metrics
 
 ![task_corr](https://github.com/chaohcc/LIAS/assets/51820918/cc02b9b1-f063-47cb-a0db-ef03c8f0240b)
 
@@ -44,7 +44,7 @@ workload_feature_2: em0,em1,em2,em3,em4,em5,em6,em7,em8,em9,em10,em11,em12,em13,
 
 ---
 
-### descrption for the dataset used in training data collection [GRE]
+### description for the dataset used in training data collection [GRE]
 
 
 #### <center>Tabel 1:  dataset description</center>
@@ -72,12 +72,12 @@ the python file for training the workload encoder model.
 the saved model of workload encoder, trained on training data with 277775 training points.
 the workload file are sampling with systematic method, that sampling 10000 operations from each workload file
 the batch size if 96, trian with 64 epoches.
-#### LIAS-clf, LIAS-reg
+#### LINDAS-clf, LINDAS-reg
 files for the classfication model and regression model
 #### DWMatrix
 some examples for the DWMatrix for the workload file
 #### training_data
-training data for the LIAS-clf and LIAS-reg
+training data for the LINDAS-clf and LINDAS-reg
 
 ### References
 [GRE] Chaichon Wongkham, Baotong Lu, Chris Liu, Zhicong Zhong, Eric Lo, and Tianzheng Wang. Are Updatable Learned Indexes Ready? . PVLDB,15(11): 3004 - 3017, 2022.
