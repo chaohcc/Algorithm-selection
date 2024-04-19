@@ -68,9 +68,9 @@ def generate_constraint(labels,c_num,c_seed = None):
     return total_constraints,total_metric_min, total_metric_max
 
 
-# group by 获得3个objective 的constraint
+#generate objective's constraint according to performance value
 def generate_groupby_constraint(labels,intersect_df,c_seed = None):
-    # 读入total_feature_28008,在每一个指标上，根据范围，随机选一个, group by according to dataname and opsname
+    # group by according to dataname and opsname
     # train_data = '/home/xxx/index_selection/new_test_adaptation/total_feature_all_29851'
     train_data = '/data/xxx/index_selection/new_test_adaptation/total_feature_all_29851'
     reg_data = pd.read_csv(train_data)
@@ -160,7 +160,7 @@ def split_train_test(train_ddf,clfheader,label,self_seed = None,valid_size=0.1,
     return  x_train,y_train,x_test,y_test,x_valid,y_valid,num_class,class_name
 
 def clf_data_normalize(train_ddf):
-    divide_big_num_name = [ 'datasize']  # 除以 1 million 1000000
+    divide_big_num_name = [ 'datasize']  # divide 1 million 1000000
     log_column_name = [  'max_key','minkey',
                          'pwl_num4', 'max_size4', 'min_size4', 'max_gap4', 'min_gap4',
                          'pwl_num8', 'max_size8', 'min_size8', 'max_gap8', 'min_gap8',
