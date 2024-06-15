@@ -117,5 +117,6 @@ LINDAS    |    13.21 & 26.07 & 39.2 & 52.22 | 13.94 & 28.48 & 44.07 & 60.0 |
 Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 
 ### The model size and training time for different models
-![image](https://github.com/chaohcc/Algorithm-selection/assets/51820918/77cd0cbf-b920-4f8a-9f1a-24e8c4039a39)
+![image](https://github.com/chaohcc/Algorithm-selection/assets/51820918/33a7f06b-7feb-49f5-962a-14779ccb13bc)
+
 
