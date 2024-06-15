@@ -1,5 +1,5 @@
 ## 
-# this code is writen as the random forest and XGBBoost
+# this code is writen as the random forest and XGBBoost used in regression approach
 # finall version
 
 import pandas as pd
