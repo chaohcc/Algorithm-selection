@@ -126,12 +126,12 @@ Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 |DH + w/o DW\_Matrix | 45                              |0.90        | 0.59          | 0.87       |
 |DH + DW\_Matrix|      84                              | 0.008      | 0.034        | 0.028     |
 |DV + w/o DW\_Matrix | 101              |0.76      | 0.383         | 0.763      |
-|DV +  DW\_Matrix     | 140                |\textbf{0.002}      | \textbf{0.03}      | \textbf{0.016}   |
+|DV +  DW\_Matrix     | 140                |**0.002**     | **0.03  **    | **0.016 **  |
 
 |features |#\_features  |index size |    bulkload time   | throughput      |
 |--   | :---:|:---:|:---:|:---:|
 | w/o XF             |98           | 0.513          | 0.741      | 0.189      |
-| XF         |140                      | \textbf{0.002} | \textbf{0.03} | \textbf{0.016} |
+| XF         |140                      | **0.002** | **0.03** |** 0.016 **|
 
 ### 4. Takeaways obtained from the experiments.
 
