@@ -102,14 +102,20 @@ contains training data for the LINDAS-clf and LINDAS-reg
 
 ### 1. LINDAS-reg: multiple constraints
 
-|水果  |  价格|  数量|
-|--   | :---:|:---:|
-|香蕉  |￥5   |  2  |
-|苹果  |￥10  | 4   |
-|橘子  |￥8   | 3   |
-
 |optimize on| avg\_regret| constraints on   |   
 |--   | :---:|:---:|
 |throughput   |0.028   |{[}index size, bulk load time{]} |
 |index size    | 0.072     |{[}throughput, bulk load time{]} |
 |bulk load time|0.068      |{[}throughput, index size{]}   |
+
+### 2. time efficiency (seconds)
+
+|dataset     | wise   |genome}   |
+|--   | :---:|:---:|
+data size ({M})| 50    & 100   & 150  & 200  | 50  & 100   & 150   & 200  |
+LINDAS    |    13.21 & 26.07 & 39.2 & 52.22 | 13.94 & 28.48 & 44.07 & 60.0 |
+Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
+
+### The model size and training time for different models
+![image](https://github.com/chaohcc/Algorithm-selection/assets/51820918/77cd0cbf-b920-4f8a-9f1a-24e8c4039a39)
+
