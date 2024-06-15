@@ -119,4 +119,18 @@ Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 ### The model size and training time for different models
 ![image](https://github.com/chaohcc/Algorithm-selection/assets/51820918/33a7f06b-7feb-49f5-962a-14779ccb13bc)
 
+### ablation study on LINDAS-reg on dataset and workload features, as well as index features: measured with regret
+
+|features | #_features |  index size | bulkload time | throughput |
+|--   | :---:|:---:|:---:|:---:|
+|DH + w/o DW\_Matrix | 45                              |0.90        | 0.59          | 0.87       |
+|DH + DW\_Matrix|      84                              | 0.008      | 0.034        | 0.028     |
+|DV + w/o DW\_Matrix | 101              |0.76      | 0.383         | 0.763      |
+|DV +  DW\_Matrix     | 140                |\textbf{0.002}      | \textbf{0.03}      | \textbf{0.016}   |
+
+|features |#\_features  |index size |    bulkload time   | throughput      |
+|--   | :---:|:---:|:---:|:---:|
+| w/o XF             |98           | 0.513          | 0.741      | 0.189      |
+| XF         |140                      | \textbf{0.002} | \textbf{0.03} | \textbf{0.016} |
+
 
