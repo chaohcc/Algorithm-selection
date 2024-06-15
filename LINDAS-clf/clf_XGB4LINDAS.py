@@ -1,4 +1,4 @@
-# this code is for the model alternatives with classification task
+# this code is for the ML model options with classification task
     # random forest, xgboost, deep learning model: MLP
 # each task train a model. the output of model can not be weighted
 
