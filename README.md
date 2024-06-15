@@ -15,6 +15,7 @@ Considered performance measures in LINDAS: bulk load time, index size, throughpu
 
 ### some details omited in the submited paper
 
+#### 1. Workload coverage compared with benchmarks
 | coverage       | GRE~\cite{vldb2022GRE}                  |TLI~\cite{vldb2023TLI}                 |CLIP~\cite{ICDE2023cutlearnedindex}          |LINDAS    |
 | :---:     |     :---:      |       :---:  |       :---:  |     :---:  | 
 |query types (lookup, short range, long range)         |high   |{medium  |medium}| **high**| 
