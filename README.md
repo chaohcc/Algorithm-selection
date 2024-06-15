@@ -97,3 +97,19 @@ contains training data for the LINDAS-clf and LINDAS-reg
 [OpenStreetMap] Google Cloud. 2017. OpenStreetMap. (2017). https://console.cloud.google.com/marketplace/details/openstreetmap/geo-openstreetmap
 
 [ALEX] Jialin Ding, Umar Farooq Minhas, Jia Yu, Chi Wang, Jaeyoung Do, Yinan Li,Hantian Zhang, Badrish Chandramouli, Johannes Gehrke, Donald Kossmann, et al. 2020. ALEX: an updatable adaptive learned index. Proceedings of the 2020 ACM SIGMOD International Conference on Management of Data, 969–984.
+
+## Some experimental results
+
+### 1. LINDAS-reg: multiple constraints
+
+|水果  |  价格|  数量|
+|--   | :---:|:---:|
+|香蕉  |￥5   |  2  |
+|苹果  |￥10  | 4   |
+|橘子  |￥8   | 3   |
+
+|optimize on| avg\_regret| constraints on   |   
+|--   | :---:|:---:|
+|throughput   |0.028   |{[}index size, bulk load time{]} |
+|index size    | 0.072     |{[}throughput, bulk load time{]} |
+|bulk load time|0.068      |{[}throughput, index size{]}   |
