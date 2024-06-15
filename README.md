@@ -2,7 +2,7 @@
 LINDAS: a Learned Approach to Index Algorithm Selection
 
 LINDAS aims to select an index algorithm for a specific dataset and workload. 
-
+## Some images may do not Some images may not display properly. For more detail, you can download the file "full_version_technical_report_a_learned_approach_to_index_algorithm_selection.pdf".
 ---
 
 ### performance measures
