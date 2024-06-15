@@ -13,6 +13,15 @@ Considered performance measures in LINDAS: bulk load time, index size, throughpu
 
 ---
 
+### some details omited in the submited paper
+
+| coverage       | GRE~\cite{vldb2022GRE}                  |TLI~\cite{vldb2023TLI}                 |CLIP~\cite{ICDE2023cutlearnedindex}          |LINDAS    |
+| :---:     |     :---:      |       :---:  |       :---:  |     :---:  | 
+|query types (lookup, short range, long range)         |high   |{medium  |medium}| **high**| 
+|query patterns   (uniform, hotspot, zipf)                | low    | low}   | low | **high** | 
+|insert patterns (uniform, hotspot, delta)                  | low    | high   | low    | **high** | 
+|concurrent operations  (lookup, insert, range)           | medium | medium | medium  | **high**  | 
+
 ### Environment requirement
 * Python 3.8
 * xgboost 2.0.0
