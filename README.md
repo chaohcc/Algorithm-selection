@@ -119,7 +119,7 @@ Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 ### The model size and training time for different models
 ![image](https://github.com/chaohcc/Algorithm-selection/assets/51820918/33a7f06b-7feb-49f5-962a-14779ccb13bc)
 
-### ablation study on LINDAS-reg on dataset and workload features, as well as index features: measured with regret
+### 3. ablation study on LINDAS-reg on dataset and workload features, as well as index features: measured with regret
 
 |features | #_features |  index size | bulkload time | throughput |
 |--   | :---:|:---:|:---:|:---:|
@@ -132,5 +132,14 @@ Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 |--   | :---:|:---:|:---:|:---:|
 | w/o XF             |98           | 0.513          | 0.741      | 0.189      |
 | XF         |140                      | \textbf{0.002} | \textbf{0.03} | \textbf{0.016} |
+
+### 4. Takeaways obtained from the experiments.
+
+#### 1) LINDAS is effective in selecting competitive index algorithms that offer high performance on the input instance. While LINDAS-clf is more suited for tasks with S-Obj and W-Obj, LINDAS-reg demonstrates high performance across all settings.
+#### 2) The XGBoost model outperforms others in LINDAS-clf and LINDAS-reg, exhibiting the best prediction performance while maintaining less training time and smaller model size.
+#### 3) We observe that base\_num = 16 achieves a good balance between regret and model size. Also, it is beneficial to include the frequently used weights in the base classifiers, when such information is available in prior.
+#### 4) A smaller sampling size is usually sufficient to represent the features of workloads, and we recommend setting the sampling size to 10,000 as default. Systematic sampling is preferred for workload encoding, as it incurs lower sampling time and leads to better performance.
+#### 5) LINDAS supports effective and efficient model adaptation to handle unseen data. In cases when adaptation does not significantly reduce the regret, model retraining can be conducted.
+#### 6) Effective featurization methods play crucial roles in IAS, and the encoding of datasets, workloads, and index features should be given primary consideration as indispensable factors.
 
 
