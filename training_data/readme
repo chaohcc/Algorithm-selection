@@ -1,4 +1,4 @@
-contain some examples (a part) of the published train data
+contain some examples (a part) of the published train data used in Index Algorithm Selection.
 
 The whole training data contain a number of 27795 instance collected in experiment by exectue each index on a specific dataset and workload.
 The whole data will be publish on accept.
