@@ -2,7 +2,7 @@
 LINDAS: a Learned Approach to Index Algorithm Selection
 
 LINDAS aims to select an index algorithm for a specific dataset and workload. 
-## Some images may not display properly. For more detail, you can download the file: "full_version_technical_report_a_learned_approach_to_index_algorithm_selection.pdf".
+
 ---
 
 ### performance measures
@@ -34,7 +34,7 @@ Considered performance measures in LINDAS: bulk load time, index size, throughpu
 ### training data description
 #### The training data consist of the performance evaluation of 13 index algorithms on 12 datasets (Table 1) with various workloads (Table 2) described in the paper.
 #### The format of the training data: each row can be seen as a certain performance evaluation on a specific dataset and workload, with a specific index algorithm.
-#### The training data are stored in csv format. You can use data = pd.read_csv(filename) to load the data. This example contains 6,000+ records. The total number of training data is 28,000 will be published when the paper is published.
+#### The training data are stored in csv format. You can use data = pd.read_csv(filename) to load the data. %This example contains 6,000+ records. The total number of training data is 28,000 will be published when the paper is published.
 
 The features in each row.
 
