@@ -123,7 +123,7 @@ contains training data for the LINDAS-clf and LINDAS-reg
 |dataset     | wise   |genome}   |
 |--   | :---:|:---:|
 data size ({M})| 50    & 100   & 150  & 200  | 50  & 100   & 150   & 200  |
-LINDAS    |    13.21 & 26.07 & 39.2 & 52.22 | 13.94 & 28.48 & 44.07 & 60.0 |
+LINDAS    |    26.66  & 54.23 & 78.61 & 106.2 | 27.69 & 57.78 & 88.38 & 122.6 |
 Exhaustive   | 765.3  1063   1545 & 1927 | 798.0 & 1118 &  1589 & 3606 |
 
 ### The model size and training time for different models
